@@ -1,51 +1,146 @@
 <!---
 {
-  "depends_on": [],
+  "id": "02b2f58b-5bbf-4314-966a-bbd25faa9450",
+  "depends_on": ["a0f6c77d-9645-4e6c-80dc-a80608786266"],
   "author": "Stephan Bökelmann",
-  "first_used": "2025-03-17",
-  "keywords": ["learning", "exercises", "education", "practice"]
+  "first_used": "2025-04-13",
+  "keywords": ["Angular", "CLI", "modern Angular", "command line", "web development"]
 }
 --->
 
-# Learning Through Exercises
+# Building a Minimal Angular App
 
-## Introduction
-Learning by doing is one of the most effective methods to acquire new knowledge and skills. Rather than passively consuming information, actively engaging in problem-solving fosters deeper understanding and long-term retention. By working through structured exercises, students can grasp complex concepts in a more intuitive and applicable way. This approach is particularly beneficial in technical fields like programming, mathematics, and engineering.
+> In this exercise you will learn how to scaffold, configure, and run a modern Angular application using only the Angular CLI from the command line. Furthermore we will explore how to avoid unnecessary tooling and keep the setup minimal while still following Angular best practices.
+
+### Introduction
+
+Angular, maintained by Google, is a powerful and structured front-end web application framework that emphasizes maintainability and scalability. Unlike older versions or more lightweight alternatives like React or Vue, Angular requires a well-defined structure and a build process. Fortunately, Angular CLI (Command Line Interface) makes it easy to scaffold and manage Angular applications directly from the terminal. This exercise guides you through setting up a minimal Angular application using only the command line, focusing on core features such as module generation, component creation, and development server setup.
+
+We deliberately avoid extra tooling like IDEs, GUIs, or containerized environments to help you understand the internal workings and structure of an Angular project. All steps are executed via terminal, which encourages a deeper grasp of the file layout, TypeScript integration, and the Angular module system.
+
+To follow this guide, you only need Node.js (v18+), npm (v9+), and Angular CLI installed globally. We'll demonstrate how to create a new project, generate a basic component, and serve the application using built-in Angular tools. This is an ideal starting point for anyone beginning with modern Angular development in a minimalist environment.
 
 ### Further Readings and Other Sources
-- [The Importance of Practice in Learning](https://www.sciencedirect.com/science/article/pii/S036013151300062X)
-- "The Art of Learning" by Josh Waitzkin
-- [How to Learn Effectively: 5 Key Strategies](https://www.edutopia.org/article/5-research-backed-learning-strategies)
 
-## Tasks
-1. **Write a Summary**: Summarize the concept of "learning by doing" in 3-5 sentences.
-2. **Example Identification**: List three examples from your own experience where learning through exercises helped you understand a topic better.
-3. **Create an Exercise**: Design a simple exercise for a topic of your choice that someone else could use to practice.
-4. **Follow an Exercise**: Find an online tutorial that includes exercises and complete at least two of them.
-5. **Modify an Existing Exercise**: Take a basic problem from a textbook or online course and modify it to make it slightly more challenging.
-6. **Pair Learning**: Explain a concept to a partner and guide them through an exercise without giving direct answers.
-7. **Review Mistakes**: Look at an exercise you've previously completed incorrectly. Identify why the mistake happened and how to prevent it in the future.
-8. **Time Challenge**: Set a timer for 10 minutes and try to solve as many simple exercises as possible on a given topic.
-9. **Self-Assessment**: Create a checklist to evaluate your own performance in completing exercises effectively.
-10. **Reflect on Progress**: Write a short paragraph on how this structured approach to exercises has influenced your learning.
+- [Angular CLI Documentation](https://angular.io/cli)
+- [Official Angular Getting Started Guide](https://angular.io/start)
+- [Understanding Angular Modules](https://angular.io/guide/ngmodules)
+- [Video: Angular in 100 Seconds](https://www.youtube.com/watch?v=3qBXWUpoPHo)
 
-<details>
-  <summary>Tip for Task 5</summary>
-  Try making small adjustments first, such as increasing the difficulty slightly or adding an extra constraint.
-</details>
+### Tasks
 
-## Questions
-1. What are the main benefits of learning through exercises compared to passive learning?
-2. How do exercises improve long-term retention?
-3. Can you think of a subject where learning through exercises might be less effective? Why?
-4. What role does feedback play in learning through exercises?
-5. How can self-designed exercises improve understanding?
-6. Why is it beneficial to review past mistakes in exercises?
-7. How does explaining a concept to someone else reinforce your own understanding?
-8. What strategies can you use to stay motivated when practicing with exercises?
-9. How can timed challenges contribute to learning efficiency?
-10. How do exercises help bridge the gap between theory and practical application?
+#### Task 0: Install Node.js and npm
 
-## Advice
-Practice consistently and seek out diverse exercises that challenge different aspects of a topic. Combine exercises with reflection and feedback to maximize your learning efficiency. Don't hesitate to adapt exercises to fit your own needs and ensure that you're actively engaging with the material, rather than just going through the motions.
+Before using Angular CLI, make sure you have Node.js (v18 or higher) and npm installed. These are required to run JavaScript outside the browser and manage dependencies. Angular and many modern front-end tools are built on the Node.js ecosystem.
+
+Download and install from the [official Node.js website](https://nodejs.org/).
+
+Verify installation:
+
+```bash
+node -v
+npm -v
+```
+
+These commands check that Node.js and npm were installed correctly and display their version numbers.
+
+#### Task 1: Install Angular CLI Globally
+
+Angular CLI is a command-line interface tool that streamlines the development workflow for Angular applications. It allows you to generate components, services, modules, and other Angular constructs with consistent naming and configuration. Additionally, it provides commands for serving, testing, and building the project.
+
+Installing the CLI globally allows you to use the `ng` command in any terminal session:
+
+```bash
+npm install -g @angular/cli
+```
+
+After installation, verify it works:
+
+```bash
+ng version
+```
+
+This ensures your environment is correctly set up to start building Angular apps using the CLI tools.
+
+#### Task 2: Create a New Angular Project
+
+The CLI can generate a fully structured Angular project with a single command:
+
+```bash
+ng new minimal-app --defaults --skip-git
+cd minimal-app
+```
+
+The `--defaults` flag automatically selects the default options such as using CSS for styling and excluding routing for now. The `--skip-git` flag prevents the CLI from initializing a Git repository, which you might not need immediately.
+
+This step sets up a well-organized folder structure including core files like `main.ts`, `app.module.ts`, and configuration files like `angular.json`, `package.json`, and `tsconfig.json`. This foundation follows Angular's architectural best practices.
+
+#### Task 3: Serve the Application
+
+To preview your Angular app in a browser, use the following command:
+
+```bash
+ng serve
+```
+
+This compiles the TypeScript source code, launches a local development server (typically on port 4200), and watches for file changes to auto-refresh the browser.
+
+Visit `http://localhost:4200` in your browser. You should see the default Angular welcome page. This confirms your setup is functional and ready for development.
+
+> Note: This is different from simply opening an HTML file in a browser or using Python’s built-in `http.server`. Angular uses a full build pipeline that transpiles TypeScript, resolves module dependencies, and supports hot-reloading. Unlike static file serving, `ng serve` integrates with the framework’s tooling for real-time feedback and optimized builds.
+
+#### Task 4: Generate a Component
+
+Angular applications are built from components. A component in Angular is a self-contained unit of UI and behavior, consisting of:
+- a **template** (HTML) for layout,
+- a **class** (TypeScript) for logic and state,
+- **styles** (CSS or similar) for appearance,
+- and **metadata** (decorators) to bind them together.
+
+You can generate a new component using:
+
+```bash
+ng generate component hello-world
+```
+
+This creates a new folder `src/app/hello-world/` with the following files:
+- `hello-world.component.ts`: Contains the TypeScript class with component logic.
+- `hello-world.component.html`: The UI template.
+- `hello-world.component.css`: Styles scoped to the component.
+- `hello-world.component.spec.ts`: A starter test file.
+
+Using the CLI to generate components ensures consistent setup and registers the component in `app.module.ts` automatically. This saves time and avoids manual errors.
+
+Components are to Angular what functions are to procedural code: reusable, modular, and composable units that make up an entire application.
+
+#### Task 5: Use the Component in the App
+
+Now that you have a new component, include it in the main application template. Open `src/app/app.component.html` and replace its content:
+
+```html
+<h1>Minimal Angular App</h1>
+<app-hello-world></app-hello-world>
+```
+
+This uses the custom element `<app-hello-world>`, which is defined by the selector property in `hello-world.component.ts`.
+
+Next, edit `src/app/hello-world/hello-world.component.html` to personalize it:
+
+```html
+<p>Hello from the HelloWorld Component!</p>
+```
+
+When you save these changes, Angular’s development server will auto-reload and show the new output in your browser. This step demonstrates how to integrate and modify a component within the application.
+
+### Questions
+
+1. What are the key files generated by `ng new` and what are their purposes?
+2. What is the role of `angular.json` in an Angular CLI project?
+3. How does Angular CLI assist in maintaining project structure?
+4. Why is it beneficial to avoid extra tooling at the beginning?
+5. Can you identify where the `app-hello-world` selector is defined?
+
+### Advice
+
+Working with Angular from the command line offers a purist's insight into how a large-scale web framework operates under the hood. By avoiding IDEs and focusing purely on terminal commands, you sharpen your understanding of project scaffolding, build processes, and component orchestration. Don’t be discouraged by the initial verbosity—once you grasp the CLI commands and folder structures, building larger applications becomes much more intuitive. When you’re ready to go deeper, check out our exercise sheet on [Angular Routing and Navigation](#) for your next step.
 
